@@ -1,0 +1,30 @@
+Command to start Zookeeper:
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+Command to Start Kafka:
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+1) Publish Request:
+Method Type: GET
+URL: http://localhost:8080/api/v1/kafka/publish?message=hello world
+Response: You can see response in application's console
+2) Publish Request:
+Method Type: POST
+URL: http://localhost:8080/api/v1/kafka/publish
+Body: {
+    "id": 1,
+    "firstName": "Nandini",
+    "lastName": "Kumari"
+}
+
+Response: You can see response in application's console
+
+@Service
+public class JsonKafkaConsumer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(JsonKafkaConsumer.class);
+
+    @KafkaListener(topics = "${spring.kafka.topic-json.name}", groupId = "${spring.kafka.consumer.group-id}")
+    public void consume(User user){
+        LOGGER.info(String.format("Json message recieved -> %s", user.toString()));
+    }
+}
