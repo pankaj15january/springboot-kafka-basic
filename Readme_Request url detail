@@ -28,3 +28,9 @@ public class JsonKafkaConsumer {
         LOGGER.info(String.format("Json message recieved -> %s", user.toString()));
     }
 }
+
+
+GIT command to Commit:
+git remote set-url --push origin https://github.com/pankaj15january/springboot-kafka-basic
+git commit -m "first commit"
+git push --set-upstream origin main
